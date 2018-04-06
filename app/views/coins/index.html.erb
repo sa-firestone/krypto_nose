@@ -1,0 +1,51 @@
+<h1 align="center"><u>Compiled Coins</u></h1>
+<br />
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="row-names">
+    <tr>
+      <th>Name</th>
+      <th>Current Cost</th>
+      <th>Ranking</th>
+      <th>Current Worth</th>
+      <th>Total Paid</th>
+      <th>Value Shift</th>
+      <th>Amount Paid per</th>
+      <th>Owned</th>
+    </tr>
+  </thead>
+
+  <tbody class="coin-list">
+    <% @coins.each do |coin| %>
+      <% if coin.user_id == current_user.id %>
+        <% if coin.symbol %>
+          <% coin.symbol = coin.symbol.upcase %>
+        <% end %>
+      <tr>
+        <% for x in @sniff_coin %>
+          <% if coin.symbol == x["symbol"] %>
+            <td><%= link_to x["name"], coin %></td>
+            <td>$<%= x["price_usd"] %></td>
+            <td><%= x["rank"] %></td>
+            <td>$<%= x["price_usd"].to_d * coin.amount_owned  %></td>
+            <td>$<%=  coin.cost_per * coin.amount_owned %></td>
+            <td>$<%= (x["price_usd"].to_d * coin.amount_owned) - (coin.cost_per * coin.amount_owned) %></td>
+            <% @value_change += (x["price_usd"].to_d * coin.amount_owned) - (coin.cost_per * coin.amount_owned) %>
+          <% end %>
+        <% end %>
+        <td>$<%= coin.cost_per %></td>
+        <td><%= coin.amount_owned %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<strong>Compiled Value Change: </strong><%= number_to_currency(@value_change)  %>
+
+<br />
+<br />
+
+<%= link_to 'New Coin', new_coin_path, class: "btn btn-default" %>

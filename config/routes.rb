@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  resources :coins
   devise_for :users
   get 'home/about'
-  get 'home/sniff'
-  post "home/sniff" => "home/sniff"
+  get 'home/fetch'
+  post "home/fetch" => "home/fetch"
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -13,7 +13,7 @@ class HomeController < ApplicationController
   def about
   end
   
-  def sniff
+  def fetch
     require 'net/http'
     require 'json'
     

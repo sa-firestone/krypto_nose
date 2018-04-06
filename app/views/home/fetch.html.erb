@@ -1,0 +1,22 @@
+<h3>Fetch Info on a Cryptocurrency!</h3>
+<br/>
+
+<div class="field">
+<%= form_tag home_fetch_path, :method => 'POST' do %>
+    <%= text_field_tag 'sym', nil, placeholder: 'Enter Crypto Symbol', style: "color: black;", size: 50 %>
+    <br/><br/><%= submit_tag 'Fetch!', class: "btn btn-info btn-lg" %>
+<% end %>
+</div>
+
+<br/><br/>
+
+<div class="fetch-result">
+    <% if @symbol %>
+        <% for x in @sniff_coin %>
+            <% if @symbol == x["symbol"] %>
+                <%= x["name"] %>: $<%= x["price_usd"] %><br/>
+                    Rank: <%= x["rank"] %><br/></br>
+            <% end %>
+        <% end %>
+    <% end %>
+</div>

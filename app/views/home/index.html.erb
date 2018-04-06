@@ -1,15 +1,21 @@
-<h1>THING!!</h1>
-<p>Yay, here's a thing</p>
+<h1 align="center"><i>KryptoNose</i></h1>
+<p align="center"><i>The nose that tracks cryptocurrency!</i></p>
 
 <br><br>
 
-<% @coins %>
+<h2 align="center"><u>Trending Coins</u></h2>
 
-<% for x in @coins %>
-    <% for coin in @my_coins %>
-        <% if coin == x["symbol"] %>
-            <%= x["name"] %>: $<%= x["price_usd"] %><br/>
-            Rank: <%= x["rank"] %><br/></br>
+<br>
+
+<div class="trends" align="center">
+    <% @coins %>
+    
+    <% for x in @coins %>
+        <% for coin in @my_coins %>
+            <% if coin == x["symbol"] %>
+                <%= x["name"] %>: $<%= x["price_usd"] %><br/>
+                Rank: <%= x["rank"] %><br/></br>
+            <% end %>
         <% end %>
     <% end %>
-<% end %>
+</div>

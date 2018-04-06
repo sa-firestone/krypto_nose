@@ -1,0 +1,32 @@
+<%= form_for(@coin) do |f| %>
+  <% if @coin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@coin.errors.count, "error") %> prohibited this coin from being saved:</h2>
+
+      <ul>
+      <% @coin.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :symbol %><br>
+    <%= f.text_field :symbol, style: "color: black;" %>
+  </div>
+  <div class="field">
+    <%= f.number_field :user_id, value: current_user.id, type: "hidden" %>
+  </div>
+  <div class="field">
+    <%= f.label :cost_per %><br>
+    <%= f.text_field :cost_per, style: "color: black;" %>
+  </div>
+  <div class="field">
+    <%= f.label :amount_owned %><br>
+    <%= f.text_field :amount_owned, style: "color: black;" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Create", class: "btn btn-default" %>
+  </div>
+<% end %>
